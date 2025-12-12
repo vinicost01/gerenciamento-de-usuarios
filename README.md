@@ -118,6 +118,13 @@ O projeto já conta com orquestração via Docker Compose, incluindo um servidor
 
 ---
 
+## Link para uma pasta com o video do app funcionando e outros arquivos relevantes
+
+https://drive.google.com/drive/folders/1IoxI8mDRnF7AxAKopJjmnn4oQuKpcBHw?usp=sharing
+
+
+
+
 ## 👥 Autores
 
 Projeto desenvolvido como parte de um trabalho acadêmico.
