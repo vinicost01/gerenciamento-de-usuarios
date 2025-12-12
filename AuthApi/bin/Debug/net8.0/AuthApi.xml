@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AuthApi</name>
+    </assembly>
+    <members>
+        <member name="T:AuthApi.Controllers.AuthController">
+            <summary>
+            Controla a autenticação e recuperação de contas.
+            </summary>
+        </member>
+        <member name="M:AuthApi.Controllers.AuthController.Login(AuthApi.Models.Dtos.LoginRequestDto)">
+            <summary>
+            Realiza o login de um Usuário.
+            </summary>
+            <remarks>
+            Retorna um token JWT se as credenciais forem válidas. 
+            Verifica também se o Usuário precisa alterar a senha provisória.
+            </remarks>
+            <param name="loginRequest">Credenciais (Username/Email e Senha)</param>
+            <returns>Token de acesso e dados do Usuário.</returns>
+        </member>
+        <member name="M:AuthApi.Controllers.AuthController.ChangeInitialPassword(AuthApi.Models.Dtos.ChangeInitialPasswordDto)">
+            <summary>
+            Altera a senha provisória no primeiro acesso.
+            </summary>
+            <remarks>
+            Requer autenticação. Após o sucesso, o Usuário deve fazer login novamente.
+            </remarks>
+        </member>
+        <member name="M:AuthApi.Controllers.AuthController.ForgotPassword(AuthApi.Models.Dtos.ForgotPasswordDto)">
+            <summary>
+            Solicita um código de recuperação de senha.
+            </summary>
+            <remarks>
+            Envia um email com um código de 6 dígitos se o email existir na base de dados.
+            </remarks>
+        </member>
+        <member name="M:AuthApi.Controllers.AuthController.ResetPassword(AuthApi.Models.Dtos.ResetPasswordDto)">
+            <summary>
+            Redefine a senha utilizando o código recebido por email.
+            </summary>
+        </member>
+        <member name="T:AuthApi.Controllers.UsersController">
+            <summary>
+            Gerencia o CRUD de Usuários.
+            </summary>
+        </member>
+        <member name="M:AuthApi.Controllers.UsersController.GetUsers">
+            <summary>
+            Lista todos os Usuários registados (Apenas Admin).
+            </summary>
+        </member>
+        <member name="M:AuthApi.Controllers.UsersController.CreateUser(AuthApi.Models.Dtos.RegisterRequestDto)">
+            <summary>
+            Cria um novo Usuário e envia credenciais por email (Apenas Admin).
+            </summary>
+            <remarks>
+            A senha gerada será provisória e o Usuário será obrigado a trocá-la no primeiro login.
+            </remarks>
+        </member>
+        <member name="M:AuthApi.Controllers.UsersController.UpdateMyProfile(AuthApi.Models.Dtos.UpdateProfileDto)">
+            <summary>
+            Atualiza o perfil do Usuário autenticado.
+            </summary>
+        </member>
+        <member name="M:AuthApi.Controllers.UsersController.AdminUpdateUser(System.Int32,AuthApi.Models.Dtos.AdminUpdateUserDto)">
+            <summary>
+            Atualiza qualquer Usuário (Apenas Admin).
+            </summary>
+        </member>
+        <member name="M:AuthApi.Controllers.UsersController.DeleteUser(System.Int32)">
+            <summary>
+            Remove um Usuário (Apenas Admin).
+            </summary>
+        </member>
+        <member name="T:AuthApi.Models.Dtos.LoginRequestDto">
+            <summary>
+            Dados necessários para login.
+            </summary>
+        </member>
+        <member name="P:AuthApi.Models.Dtos.LoginRequestDto.Identifier">
+            <summary>Username ou Email.</summary>
+        </member>
+        <member name="P:AuthApi.Models.Dtos.LoginRequestDto.Password">
+            <summary>Senha do Usuário.</summary>
+        </member>
+        <member name="T:AuthApi.Models.Dtos.RegisterRequestDto">
+            <summary>
+            Modelo para criação de novos Usuários.
+            </summary>
+        </member>
+        <member name="P:AuthApi.Models.Dtos.RegisterRequestDto.password">
+            <summary>Senha provisória que será enviada por email.</summary>
+        </member>
+        <member name="P:AuthApi.Models.Dtos.RegisterRequestDto.role">
+            <summary>Função: 'admin' ou 'user'.</summary>
+        </member>
+        <member name="P:AuthApi.Models.Dtos.ResetPasswordDto.Token">
+            <summary>Código de 6 dígitos enviado por email.</summary>
+        </member>
+    </members>
+</doc>

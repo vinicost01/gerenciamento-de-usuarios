@@ -1,0 +1,3 @@
+api.solucoes-novalink.com {
+reverse_proxy auth-api:5000
+}

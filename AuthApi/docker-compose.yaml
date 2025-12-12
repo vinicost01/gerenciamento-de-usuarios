@@ -1,0 +1,29 @@
+services:
+  auth-api:
+    build:
+      context: /AuthApi
+      dockerfile: Dockerfile
+    container_name: auth_api_container
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5000
+
+  caddy:
+    image: caddy:alpine
+    container_name: caddy_reverse_proxy
+    restart: always
+    ports:
+      - "80:80"   # HTTP
+      - "443:443" # HTTPS
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - auth-api
+
+volumes:
+  caddy_data:
+  caddy_config:
+
